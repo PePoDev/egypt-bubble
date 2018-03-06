@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GP_Midterm_BubblePuzzle.GameObjects {
-	class Gun {
+	class Gun : _GameObject{
+
 	}
 }

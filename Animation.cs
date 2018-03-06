@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GP_Midterm_BubblePuzzle.Models {
+namespace GP_Midterm_BubblePuzzle {
 	public class Animation {
 		public Rectangle AnimationRectangle { get; private set; }
 		public int CurrentFrame { get; set; }

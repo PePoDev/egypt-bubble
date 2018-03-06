@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GP_Midterm_BubblePuzzle.Models;
 using System;
 
 namespace GP_Midterm_BubblePuzzle.Managers {

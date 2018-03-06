@@ -3,7 +3,14 @@ using System.Linq;
 
 namespace GP_Midterm_BubblePuzzle {
 	public class FrameCounter {
-
+		private static FrameCounter instance;
+		public static FrameCounter Instance {
+			get {
+				if (instance == null)
+					instance = new FrameCounter();
+				return instance;
+			}
+		}
 		public long TotalFrames { get; private set; }
 		public float TotalSeconds { get; private set; }
 		public float AverageFramesPerSecond { get; private set; }

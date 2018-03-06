@@ -1,19 +1,12 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using GP_Midterm_BubblePuzzle.Managers;
+using Microsoft.Xna.Framework;
 
 namespace GP_Midterm_BubblePuzzle {
 	 class Singleton {
-		public const int WIDTH = 1280;
-		public const int HEIGHT = 720;
-		public const int TILESIZE = 75;
-
-		public bool alive = true;
-		public float delTimePerBlock = 0.5f;
-		public float TimePerBlock = 0.5f;
-		public long _timer;
-
-		public float MasterBGMVolume;
-		public float MasterSFXVolume;
+		public Vector2 Diemensions = new Vector2(1280,720);
+		public int TILESIZE = 75;
+		public int BGM_MasterVolume = 100;
+		public bool showFPS = false;
 
 		public enum GameState {
 			WaitPlayerShootBall,
@@ -26,7 +19,6 @@ namespace GP_Midterm_BubblePuzzle {
 		public KeyboardState PreviousKey, CurrentKey;
 
 		private static Singleton instance;
-		private Singleton() { }
 		public static Singleton Instance {
 			get {
 				if (instance == null) {

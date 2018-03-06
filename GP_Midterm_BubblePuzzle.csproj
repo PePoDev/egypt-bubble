@@ -47,11 +47,14 @@
     <Compile Include="GameObjects\Bullet.cs" />
     <Compile Include="GameObjects\Gun.cs" />
     <Compile Include="GameObjects\_GameObject.cs" />
-    <Compile Include="MainScene.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
-    <Compile Include="Managers\SceneManager.cs" />
+    <Compile Include="Managers\ScreenManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screen\MenuScreen.cs" />
+    <Compile Include="Screen\SplashScreen.cs" />
+    <Compile Include="Screen\_GameScreen.cs" />
     <Compile Include="Singleton.cs" />
   </ItemGroup>
   <ItemGroup>

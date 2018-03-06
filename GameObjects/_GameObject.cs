@@ -6,16 +6,11 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GP_Midterm_BubblePuzzle {
 	public class _GameObject : ICloneable {
 		protected Texture2D _texture;
-
 		public Vector2 Position;
-
 		public float Rotation;
 		public Vector2 Scale;
-
 		public Vector2 Velocity;
-
 		public string Name;
-
 		public bool IsActive;
 
 		public Rectangle Rectangle {
