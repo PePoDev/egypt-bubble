@@ -11,8 +11,6 @@ namespace GP_Midterm_BubblePuzzle.Managers {
 			PalyScreen
 		}
 		private _GameScreen CurrentGameScreen;
-		private SplashScreen splashScreen;
-		private MenuScreen menuScreen;
 
 		public ScreenManager() {
 			CurrentGameScreen = new SplashScreen();

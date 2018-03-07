@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
+// https://stackoverflow.com/questions/20676185/xna-monogame-getting-the-frames-per-second
 namespace GP_Midterm_BubblePuzzle {
 	public class FrameCounter {
 		private static FrameCounter instance;

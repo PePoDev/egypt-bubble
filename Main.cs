@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Audio;
-using System.Collections.Generic;
 using GP_Midterm_BubblePuzzle.Managers;
 
 namespace GP_Midterm_BubblePuzzle {
@@ -11,6 +9,7 @@ namespace GP_Midterm_BubblePuzzle {
 	public class Main : Game {
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
+		private Vector2 fontSize;
 		private Song BGM;
 		private SpriteFont Arial, Arcanista, KHMetropolis;
 
@@ -66,7 +65,8 @@ namespace GP_Midterm_BubblePuzzle {
 			if (Singleton.Instance.showFPS) {
 				float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 				FrameCounter.Instance.Update(deltaTime);
-				spriteBatch.DrawString(Arcanista, string.Format("FPS: {0}", FrameCounter.Instance.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
+				fontSize = Arial.MeasureString(string.Format("FPS: {0}", FrameCounter.Instance.AverageFramesPerSecond));
+				spriteBatch.DrawString(Arial, string.Format("FPS: {0}", FrameCounter.Instance.AverageFramesPerSecond), new Vector2((Singleton.Instance.Diemensions.X - fontSize.X) / 2, (Singleton.Instance.Diemensions.Y - fontSize.Y) / 2), Color.Yellow);
 			}
 
 			spriteBatch.End();

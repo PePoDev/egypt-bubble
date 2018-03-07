@@ -6,15 +6,8 @@ namespace GP_Midterm_BubblePuzzle {
 		public Vector2 Diemensions = new Vector2(1280,720);
 		public int TILESIZE = 75;
 		public int BGM_MasterVolume = 100;
+		public int SFX_MasterVolume = 100;
 		public bool showFPS = false;
-
-		public enum GameState {
-			WaitPlayerShootBall,
-			GamePlaying,
-			GameEnded,
-			GameOver
-		}
-		public GameState CurrentGameState;
 
 		public KeyboardState PreviousKey, CurrentKey;
 
