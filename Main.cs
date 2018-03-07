@@ -42,15 +42,21 @@ namespace GP_Midterm_BubblePuzzle {
 		protected override void UnloadContent() {
 			ScreenManager.Instance.UnloadContent();
 		}
-		
+
 		protected override void Update(GameTime gameTime) {
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-				Exit();
-			Singleton.Instance.CurrentKey = Keyboard.GetState();
+			/* if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+				Exit(); */
 
 			ScreenManager.Instance.Update(gameTime);
-			
-			Singleton.Instance.PreviousKey = Singleton.Instance.CurrentKey;
+
+			if (Singleton.Instance.cmdExit) {
+				Exit();
+			}
+			if (Singleton.Instance.cmdFullScreen) {
+				graphics.ToggleFullScreen();
+				graphics.ApplyChanges();
+				Singleton.Instance.cmdFullScreen = false;
+			}
 			base.Update(gameTime);
 		}
 
@@ -59,7 +65,7 @@ namespace GP_Midterm_BubblePuzzle {
 			spriteBatch.Begin();
 
 			ScreenManager.Instance.Draw(spriteBatch);
-			if (Singleton.Instance.showFPS) {
+			if (Singleton.Instance.cmdShowFPS) {
 				float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 				FrameCounter.Instance.Update(deltaTime);
 				fontSize = Arial.MeasureString(string.Format("FPS: {0}", FrameCounter.Instance.AverageFramesPerSecond));
@@ -69,6 +75,6 @@ namespace GP_Midterm_BubblePuzzle {
 			spriteBatch.End();
 			base.Draw(gameTime);
 		}
-		
+
 	}
 }

@@ -7,9 +7,9 @@ namespace GP_Midterm_BubblePuzzle {
 		public int TILESIZE = 75;
 		public int BGM_MasterVolume = 100;
 		public int SFX_MasterVolume = 100;
-		public bool showFPS = false;
+		public bool cmdExit = false, cmdFullScreen = false, cmdShowFPS = false;
 
-		public KeyboardState PreviousKey, CurrentKey;
+		public MouseState MousePrevious, MouseCurrent;
 
 		private static Singleton instance;
 		public static Singleton Instance {
