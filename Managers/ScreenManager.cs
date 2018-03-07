@@ -16,7 +16,6 @@ namespace GP_Midterm_BubblePuzzle.Managers {
 			CurrentGameScreen = new SplashScreen();
 		}
 		public void LoadScreen(GameScreenName _ScreenName) {
-			//CurrentGameScreen.UnloadContent();
 			switch (_ScreenName) {
 				case GameScreenName.MenuScreen:
 					CurrentGameScreen = new MenuScreen();

@@ -9,9 +9,10 @@ namespace GP_Midterm_BubblePuzzle {
 	public class Main : Game {
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
+
 		private Vector2 fontSize;
 		private Song BGM;
-		private SpriteFont Arial, Arcanista, KHMetropolis;
+		private SpriteFont Arial;
 
 		public Main() {
 			graphics = new GraphicsDeviceManager(this);
@@ -35,11 +36,7 @@ namespace GP_Midterm_BubblePuzzle {
 		protected override void LoadContent() {
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 			ScreenManager.Instance.LoadContent(Content);
-			
-			
 			Arial = Content.Load<SpriteFont>("Fonts/Arial");
-			Arcanista = Content.Load<SpriteFont>("Fonts/Arcanista");
-			KHMetropolis = Content.Load<SpriteFont>("Fonts/KH-Metropolis");
 		}
 
 		protected override void UnloadContent() {

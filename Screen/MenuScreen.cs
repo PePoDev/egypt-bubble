@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 
 namespace GP_Midterm_BubblePuzzle.Screen {
@@ -20,15 +21,16 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 		}
 		public override void LoadContent() {
 			base.LoadContent();
-			BG = content.Load<Texture2D>("PlayScreen/BG");
+			BG = content.Load<Texture2D>("MenuScreen/BG");
 			Black = content.Load<Texture2D>("SplashScreen/Black");
 		}
 		public override void UnloadContent() {
 			base.UnloadContent();
 		}
 		public override void Update(GameTime gameTime) {
-			_timer += (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
+			// fade out
 			if (!fadeFinish) {
+				_timer += (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
 				if (_timer >= timerPerUpdate) {
 					alpha -= 5;
 					_timer -= timerPerUpdate;
@@ -38,11 +40,15 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 					_Color.A = (byte)alpha;
 				}
 			}
+			// Menu click
+
+
 			base.Update(gameTime);
 		}
 		public override void Draw(SpriteBatch spriteBatch) {
-			
 			spriteBatch.Draw(BG, Vector2.Zero, Color.White);
+
+
 
 			if (!fadeFinish) {
 				spriteBatch.Draw(Black, Vector2.Zero, _Color);
