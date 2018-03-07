@@ -1,4 +1,4 @@
-﻿using GP_Midterm_BubblePuzzle.Scene;
+﻿using GP_Midterm_BubblePuzzle.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,13 +16,13 @@ namespace GP_Midterm_BubblePuzzle.Managers {
 			CurrentGameScreen = new SplashScreen();
 		}
 		public void LoadScreen(GameScreenName _ScreenName) {
-			CurrentGameScreen.UnloadContent();
+			//CurrentGameScreen.UnloadContent();
 			switch (_ScreenName) {
 				case GameScreenName.MenuScreen:
 					CurrentGameScreen = new MenuScreen();
 					break;
 				case GameScreenName.PalyScreen:
-					// CurrentGameScreen = new PlayScreen();
+					CurrentGameScreen = new PlayScreen();
 					break;
 			}
 			CurrentGameScreen.LoadContent();

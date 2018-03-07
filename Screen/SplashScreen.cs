@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GP_Midterm_BubblePuzzle.Managers;
 
-namespace GP_Midterm_BubblePuzzle.Scene {
+namespace GP_Midterm_BubblePuzzle.Screen {
 	class SplashScreen : _GameScreen{
 		private Vector2 fontSize;
 		private Color _Color; // for update color alpha

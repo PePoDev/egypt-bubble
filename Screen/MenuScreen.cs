@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace GP_Midterm_BubblePuzzle.Scene {
+namespace GP_Midterm_BubblePuzzle.Screen {
 	class MenuScreen :_GameScreen {
 		private Color _Color;
 		private Texture2D BG, Black;
