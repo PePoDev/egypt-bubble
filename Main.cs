@@ -22,6 +22,7 @@ namespace GP_Midterm_BubblePuzzle {
 			IsFixedTimeStep = false;
 			IsMouseVisible = true;
 			Content.RootDirectory = "Content";
+			Window.Position = new Point((GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2) - (graphics.PreferredBackBufferWidth / 2), (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2) - (graphics.PreferredBackBufferHeight / 2));
 			graphics.ApplyChanges();
 		}
 
