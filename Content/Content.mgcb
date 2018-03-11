@@ -88,24 +88,6 @@
 /processorParam:Quality=Best
 /build:Audios/Spirit_of_the_Dead.mp3
 
-#begin Audios/transition t07 two-step 007.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Audios/transition t07 two-step 007.mp3
-
-#begin Audios/UI_SoundPack8_Error_v1.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Audios/UI_SoundPack8_Error_v1.mp3
-
-#begin Audios/UI_SoundPack11_Select_v14.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Audios/UI_SoundPack11_Select_v14.mp3
-
 #begin SplashScreen/Black.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -237,4 +219,22 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:MenuScreen/start.png
+
+#begin Audios/transition t07 two-step 007.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audios/transition t07 two-step 007.wav
+
+#begin Audios/UI_SoundPack8_Error_v1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audios/UI_SoundPack8_Error_v1.wav
+
+#begin Audios/UI_SoundPack11_Select_v14.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audios/UI_SoundPack11_Select_v14.wav
 

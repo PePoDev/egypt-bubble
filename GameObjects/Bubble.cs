@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace GP_Midterm_BubblePuzzle.GameObjects {
 	public class Bubble : _GameObject {
 		public float Speed;
 		public float Angle;
+		
+		public SoundEffectInstance deadSFX , stickSFX;
 
 		public Bubble(Texture2D texture) : base(texture) {
+			
 		}
 
 		public override void Update(GameTime gameTime, Bubble[,] gameObjects) {
@@ -45,6 +50,9 @@ namespace GP_Midterm_BubblePuzzle.GameObjects {
 						Position = new Vector2((0* 80) + ((0 % 2) == 0 ? 320 : 360), (0 * 70) + 40);
 					}
 					Singleton.Instance.Shooting = false;
+					
+					stickSFX.Volume = Singleton.Instance.SFX_MasterVolume;
+					stickSFX.Play();
 				}
 
 				if (Position.X <= 320) {
@@ -94,7 +102,11 @@ namespace GP_Midterm_BubblePuzzle.GameObjects {
 							IsActive = false;
 							if (Singleton.Instance.removeBubble.Count >= 3) {
 								Singleton.Instance.Score += Singleton.Instance.removeBubble.Count * 100;
+								deadSFX.Volume = Singleton.Instance.SFX_MasterVolume;
+								deadSFX.Play();
 							} else if (Singleton.Instance.removeBubble.Count > 0) {
+								stickSFX.Volume = Singleton.Instance.SFX_MasterVolume;
+								stickSFX.Play();
 								foreach (Vector2 v in Singleton.Instance.removeBubble) {
 									gameObjects[(int)v.Y, (int)v.X] = new Bubble(_texture) {
 										Name = "Bubble",

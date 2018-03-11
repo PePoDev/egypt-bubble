@@ -4,6 +4,9 @@ using GP_Midterm_BubblePuzzle.GameObjects;
 using System;
 using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
+using GP_Midterm_BubblePuzzle.Managers;
+using Microsoft.Xna.Framework.Media;
 
 namespace GP_Midterm_BubblePuzzle.Screen {
 	class PlayScreen : _GameScreen {
@@ -20,6 +23,8 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 		private int alpha = 255;
 		private bool fadeFinish = false;
 		private bool gameOver = false;
+		private SoundEffectInstance BubbleSFX_stick, BubbleSFX_dead;
+		private SoundEffectInstance Click;
 
 		public void Initial() {
 			_Color = new Color(255, 255, 255, alpha);
@@ -33,10 +38,15 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 					};
 				}
 			}
+			Click.Volume = Singleton.Instance.SFX_MasterVolume;
+			BubbleSFX_stick.Volume = Singleton.Instance.SFX_MasterVolume;
+			BubbleSFX_dead.Volume = Singleton.Instance.SFX_MasterVolume;
 			gun = new Gun(GunTexture,BubbleTexture) {
 				Name = "Gun",
 				Position = new Vector2(Singleton.Instance.Diemensions.X/2 - GunTexture.Width / 2, 700 - GunTexture.Height),
 				color = Color.White,
+				_deadSFX = BubbleSFX_dead,
+				_stickSFX = BubbleSFX_stick,
 				IsActive = true,
 			};
 		}
@@ -73,6 +83,9 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			GunTexture = content.Load<Texture2D>("PlayScreen/bow_sheet");
 			Arial = content.Load<SpriteFont>("Fonts/Arial");
 			Arcanista = content.Load<SpriteFont>("Fonts/Arcanista");
+			BubbleSFX_dead = content.Load<SoundEffect>("Audios/UI_SoundPack8_Error_v1").CreateInstance();
+			BubbleSFX_stick = content.Load<SoundEffect>("Audios/UI_SoundPack11_Select_v14").CreateInstance();
+			Click = content.Load<SoundEffect>("Audios/transition t07 two-step 007").CreateInstance();
 			Initial();
 		}
 		public override void UnloadContent() {
@@ -94,9 +107,12 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 					}
 				}
 			} else {
-
+				Singleton.Instance.MousePrevious = Singleton.Instance.MouseCurrent;
+				Singleton.Instance.MouseCurrent = Mouse.GetState();
+				if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
+					ScreenManager.Instance.LoadScreen(ScreenManager.GameScreenName.PalyScreen);
+				}
 			}
-
 			// fade out
 			if (!fadeFinish) {
 				_timer += (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
@@ -127,6 +143,8 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 
 			if (gameOver) {
 				spriteBatch.Draw(Black, Vector2.Zero, new Color(255,255,255,125));
+				fontSize = Arial.MeasureString("GameOver !!");
+				spriteBatch.DrawString(Arial, "GameOver !!" , Singleton.Instance.Diemensions/2 - fontSize/2, _Color);
 			}
 
 			// Draw fade out

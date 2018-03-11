@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -15,13 +16,13 @@ namespace GP_Midterm_BubblePuzzle.GameObjects {
 		private Color _color;
 		private float angle;
 
+		public SoundEffectInstance _deadSFX, _stickSFX;
 		public Gun(Texture2D texture, Texture2D bubble) : base(texture) {
 			bubbleTexture = bubble;
 			_color = GetRandomColor();
 		}
 
 		public override void Update(GameTime gameTime, Bubble[,] gameObjects) {
-			// TODO : Click to shoot bubble
 			Singleton.Instance.MousePrevious = Singleton.Instance.MouseCurrent;
 			Singleton.Instance.MouseCurrent = Mouse.GetState();
 			if (Singleton.Instance.MouseCurrent.Y < 625) {
@@ -30,6 +31,8 @@ namespace GP_Midterm_BubblePuzzle.GameObjects {
 					BubbleOnGun = new Bubble(bubbleTexture) {
 						Name = "Bubble",
 						Position = new Vector2(Singleton.Instance.Diemensions.X / 2 - bubbleTexture.Width / 2, 700 - bubbleTexture.Height),
+						deadSFX = _deadSFX,
+						stickSFX = _stickSFX,
 						color = _color,
 						IsActive = true,
 						Angle = angle + MathHelper.Pi,
