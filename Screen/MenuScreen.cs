@@ -36,7 +36,6 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			base.UnloadContent();
 		}
 		public override void Update(GameTime gameTime) {
-			// Menu click
 			Singleton.Instance.MousePrevious = Singleton.Instance.MouseCurrent;
 			Singleton.Instance.MouseCurrent = Mouse.GetState();
 			
@@ -53,7 +52,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			if ((Singleton.Instance.MouseCurrent.X > 93 && Singleton.Instance.MouseCurrent.Y > 161) && (Singleton.Instance.MouseCurrent.X < 256 && Singleton.Instance.MouseCurrent.Y < 674)) {
 				mhOption = true;
 				if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
-
+					showOption = true;
 				}
 			} else {
 				mhOption = false;
@@ -62,7 +61,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			if ((Singleton.Instance.MouseCurrent.X > 1044 && Singleton.Instance.MouseCurrent.Y > 178) && (Singleton.Instance.MouseCurrent.X < 1218 && Singleton.Instance.MouseCurrent.Y < 694)) {
 				mhAbout = true;
 				if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
-
+					showAbout = true;
 				}
 			} else {
 				mhAbout = false;
@@ -71,7 +70,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			if ((Singleton.Instance.MouseCurrent.X > 978 && Singleton.Instance.MouseCurrent.Y > 30) && (Singleton.Instance.MouseCurrent.X < 1200 && Singleton.Instance.MouseCurrent.Y < 160)) {
 				mhRanking = true;
 				if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
-
+					showRanking = true;
 				}
 			} else {
 				mhRanking = false;
@@ -80,7 +79,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			if ((Singleton.Instance.MouseCurrent.X > 420 && Singleton.Instance.MouseCurrent.Y > 580) && (Singleton.Instance.MouseCurrent.X < 831 && Singleton.Instance.MouseCurrent.Y < 692)) {
 				mhExit = true;
 				if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
-
+					Singleton.Instance.cmdExit = true;
 				}
 			} else {
 				mhExit = false;
@@ -116,6 +115,19 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			}
 			if (mhStart) {
 				spriteBatch.Draw(StartH, new Vector2(551, 332), Color.White);
+			}
+
+			// Draw Option Screen
+			if (showOption) {
+
+			}
+			// Draw About Screen
+			if (showAbout) {
+
+			}
+			// Draw Leader board Screen
+			if (showRanking) {
+
 			}
 
 			// Draw fade out

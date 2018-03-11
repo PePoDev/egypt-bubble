@@ -41,14 +41,11 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Animation.cs" />
     <Compile Include="FrameCounter.cs" />
     <Compile Include="GameObjects\Bubble.cs" />
-    <Compile Include="GameObjects\Bullet.cs" />
     <Compile Include="GameObjects\Gun.cs" />
     <Compile Include="GameObjects\_GameObject.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Managers\ScreenManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
