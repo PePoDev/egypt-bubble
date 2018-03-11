@@ -7,26 +7,17 @@ namespace GP_Midterm_BubblePuzzle.GameObjects {
 	public class Bubble : _GameObject {
 		public float Speed;
 		public float Angle;
-		public Vector2 Center { get; set; }
-		public float Radius { get; set; }
 
 		public Bubble(Texture2D texture) : base(texture) {
-			Radius = Position.X / 2;
 		}
 
-		public override void Update(GameTime gameTime, _GameObject[,] gameObjects) {
-			Center = new Vector2(Position.X / 2, Position.Y / 2);
+		public override void Update(GameTime gameTime, Bubble[,] gameObjects) {
 			if (IsActive) {
-				Console.WriteLine(Center.X + " : " + Center.Y);
 				Velocity.X = (float)Math.Cos(Angle) * Speed;
 				Velocity.Y = (float)Math.Sin(Angle) * Speed;
 				Position += Velocity * gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
-			}
-			foreach (Bubble g in gameObjects) {
-				if ((g != null && !g.IsActive) && Intersects(g)) {
-					IsActive = false;
-					Console.WriteLine("STOP !!!!!!!!!!");
-				}
+				DetectCollision(gameObjects);
+				
 			}
 
 			if (Position.Y <= 40) {
@@ -44,13 +35,37 @@ namespace GP_Midterm_BubblePuzzle.GameObjects {
 			}
 		}
 
+		private void DetectCollision(Bubble[,] gameObjects) {
+			for (int i = 0; i < 9; i++) {
+				for (int j = 0; j < 8; j++) {
+					if (gameObjects[i, j] != null && !gameObjects[i, j].IsActive) {
+						if (CheckCollision(gameObjects[i, j]) <= 80) {
+							Console.WriteLine(j + " : " + i);
+							if (Position.X >= gameObjects[i, j].Position.X) {
+								gameObjects[i+1, j+1] = this;
+								Console.WriteLine("Right !!");
+								//Console.WriteLine(j + " : " + i);
+							} else {
+								gameObjects[i + 1, j] = this;
+								Console.WriteLine("Left !!");
+								//Console.WriteLine(j + " : " + i);
+							}
+							IsActive = false;
+							Singleton.Instance.Shooting = false;
+							return;
+						}
+
+					}
+				}
+			}
+		}
 		public override void Draw(SpriteBatch spriteBatch) {
 			spriteBatch.Draw(_texture, Position, color);
 			base.Draw(spriteBatch);
 		}
 
-		public bool Intersects(Bubble other) {
-			return ((other.Center - Center).Length() < (other.Radius - Radius));
+		public int CheckCollision(Bubble other) {
+			return (int)Math.Sqrt(Math.Pow(Position.X - other.Position.X, 2) + Math.Pow(Position.Y - other.Position.Y, 2));
 		}
 	}
 }

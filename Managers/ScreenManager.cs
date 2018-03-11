@@ -13,8 +13,8 @@ namespace GP_Midterm_BubblePuzzle.Managers {
 		private _GameScreen CurrentGameScreen;
 
 		public ScreenManager() {
-			//CurrentGameScreen = new SplashScreen();
-			CurrentGameScreen = new MenuScreen();
+			CurrentGameScreen = new SplashScreen();
+			//CurrentGameScreen = new MenuScreen();
 		}
 		public void LoadScreen(GameScreenName _ScreenName) {
 			switch (_ScreenName) {

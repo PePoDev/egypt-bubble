@@ -35,7 +35,7 @@ namespace GP_Midterm_BubblePuzzle.GameObjects {
 			IsActive = true;
 		}
 
-		public virtual void Update(GameTime gameTime, _GameObject[,] gameObjects) {
+		public virtual void Update(GameTime gameTime, Bubble[,] gameObjects) {
 		}
 		public virtual void Draw(SpriteBatch spriteBatch) {
 		}

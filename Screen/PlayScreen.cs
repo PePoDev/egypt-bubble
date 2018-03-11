@@ -9,7 +9,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 	class PlayScreen : _GameScreen {
 		private Texture2D BG, Black, BubbleTexture, GunTexture;
 		private SpriteFont Arial, Arcanista;
-		private _GameObject[,] bubble = new _GameObject[8, 9];
+		private Bubble[,] bubble = new Bubble[9, 8];
 		private Color _Color;
 		private Random random = new Random();
 		private Gun gun;
@@ -22,11 +22,11 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 
 		public void Initial() {
 			_Color = new Color(255, 255, 255, alpha);
-			for (int j = 0; j < 3; j++) {
-				for (int i = 0; i < 8 - (j%2); i++) {
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 8 - (i%2); j++) {
 					bubble[i, j] = new Bubble(BubbleTexture) {
 						Name = "Bubble",
-						Position = new Vector2((i * 80) + ((j % 2) == 0 ? 320 : 360), (j * 70) + 40),
+						Position = new Vector2((j * 80) + ((i % 2) == 0 ? 320 : 360), (i * 70) + 40),
 						color = GetRandomColor(),
 						IsActive = false,
 					};
@@ -78,8 +78,8 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			base.UnloadContent();
 		}
 		public override void Update(GameTime gameTime) {
-			for (int j = 0; j < 9; j++) {
-				for (int i = 0; i < 8; i++) {
+			for (int i = 0; i < 9; i++) {
+				for (int j = 0; j < 8; j++) {
 					if (bubble[i, j] != null)
 						bubble[i, j].Update(gameTime, bubble);
 				}
@@ -105,8 +105,8 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 		}
 		public override void Draw(SpriteBatch spriteBatch) {
 			spriteBatch.Draw(BG, Vector2.Zero, Color.White);
-			for (int j = 0; j < 9; j++) {
-				for (int i = 0; i < 8; i++) {
+			for (int i = 0; i < 9; i++) {
+				for (int j = 0; j < 8; j++) {
 					if (bubble[i,j] != null)
 						bubble[i, j].Draw(spriteBatch);
 				}
