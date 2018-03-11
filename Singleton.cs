@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace GP_Midterm_BubblePuzzle {
 	 class Singleton {
@@ -9,7 +10,7 @@ namespace GP_Midterm_BubblePuzzle {
 		public int SFX_MasterVolume = 100;
 		public int Score = 0;
 		public bool Shooting = false;
-
+		public List<Vector2> removeBubble = new List<Vector2>();
 		public bool cmdExit = false, cmdFullScreen = false, cmdShowFPS = false;
 
 		public MouseState MousePrevious, MouseCurrent;

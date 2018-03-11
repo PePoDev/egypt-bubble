@@ -19,6 +19,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 		private float timerPerUpdate = 0.05f;
 		private int alpha = 255;
 		private bool fadeFinish = false;
+		private bool gameOver = false;
 
 		public void Initial() {
 			_Color = new Color(255, 255, 255, alpha);
@@ -78,15 +79,23 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			base.UnloadContent();
 		}
 		public override void Update(GameTime gameTime) {
-			for (int i = 0; i < 9; i++) {
-				for (int j = 0; j < 8; j++) {
-					if (bubble[i, j] != null)
-						bubble[i, j].Update(gameTime, bubble);
+			if (!gameOver) {
+				for (int i = 0; i < 9; i++) {
+					for (int j = 0; j < 8; j++) {
+						if (bubble[i, j] != null)
+							bubble[i, j].Update(gameTime, bubble);
+					}
 				}
-			}
-			gun.Update(gameTime, bubble);
+				gun.Update(gameTime, bubble);
+				Timer += (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
+				for (int i = 0; i < 8; i++) {
+					if (bubble[8, i] != null) {
+						gameOver = true;
+					}
+				}
+			} else {
 
-			Timer += (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
+			}
 
 			// fade out
 			if (!fadeFinish) {
@@ -112,12 +121,13 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 				}
 			}
 			gun.Draw(spriteBatch);
+			
+			spriteBatch.DrawString(Arcanista, "Score : " + Singleton.Instance.Score, new Vector2(1060,260), _Color);
+			spriteBatch.DrawString(Arcanista, "Time : " + Timer.ToString("F"), new Vector2(20, 260), _Color);
 
-			fontSize = Arcanista.MeasureString("Score : " + Singleton.Instance.Score);
-			spriteBatch.DrawString(Arcanista, "Score : " + Singleton.Instance.Score, new Vector2(0,0), _Color);
-
-			fontSize = Arcanista.MeasureString("Time : " + Timer);
-			spriteBatch.DrawString(Arcanista, "Time : " + Timer, new Vector2(0, 360), _Color);
+			if (gameOver) {
+				spriteBatch.Draw(Black, Vector2.Zero, new Color(255,255,255,125));
+			}
 
 			// Draw fade out
 			if (!fadeFinish) {
