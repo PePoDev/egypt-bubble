@@ -118,7 +118,9 @@ namespace GP_Midterm_BubblePuzzle.Screen {
                 for (int i = 0; i < 8; i++) {
                     if (bubble[8, i] != null) {
                         gameOver = true;
-                    }
+						Singleton.Instance.BestScore = Singleton.Instance.Score.ToString();
+						Singleton.Instance.BestTime = Timer.ToString("F");
+					}
                 }
                 //Check ball flying
                 for (int i = 1; i < 9; i++) {
@@ -154,6 +156,8 @@ namespace GP_Midterm_BubblePuzzle.Screen {
                         for (int j = 0; j < 8 - (i % 2); j++) {
                             if (bubble[i, j] != null) {
                                 gameOver = true;
+								Singleton.Instance.BestScore = Singleton.Instance.Score.ToString();
+								Singleton.Instance.BestTime = Timer.ToString("F");
                             }
                         }
                     }

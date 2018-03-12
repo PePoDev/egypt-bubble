@@ -53,7 +53,7 @@ namespace GP_Midterm_BubblePuzzle.GameObjects {
 					stickSFX.Play();
 				}
 
-				if (Position.X <= 320) {
+				if (Position.X <= 325) {
 					Angle = -Angle;
 					Angle += MathHelper.ToRadians(180);
 				}

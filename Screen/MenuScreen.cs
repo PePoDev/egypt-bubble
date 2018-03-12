@@ -10,7 +10,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 		private Color _Color = new Color(250, 250, 250, 0);
 		private Texture2D BG, Black;
 		private Texture2D StartH, AboutH, OptionH, RankingH, ExitH, checkBoxYes, checkBoxNo, apply, back, Arrow;
-		private SpriteFont Arcanista, KM;
+		private SpriteFont Arial, Arcanista, KM;
 		private Vector2 fontSize;
 
 		private SoundEffectInstance SoundClickUI, SoundEnterGameGame, SoundSelectUI;
@@ -18,6 +18,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 		private bool fadeFinish = false;
 		private bool showOption = false, showRanking = false, showAbout = false;
 		private bool mhStart = false, mhOption = false, mhAbout = false, mhRanking = false, mhExit = false, mhBack = false, mhApply;
+		private bool mhsStart = false, mhsOption = false, mhsAbout = false, mhsRanking = false, mhsExit = false;
 		private bool mainScreen = true;
 
 		private float _timer = 0.0f;
@@ -35,6 +36,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 		}
 		public override void LoadContent() {
 			base.LoadContent();
+			// Texture2D
 			BG = content.Load<Texture2D>("MenuScreen/BG");
 			Black = content.Load<Texture2D>("SplashScreen/Black");
 			StartH = content.Load<Texture2D>("MenuScreen/start");
@@ -47,67 +49,105 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 			apply = content.Load<Texture2D>("MenuScreen/apply");
 			back = content.Load<Texture2D>("MenuScreen/back");
 			Arrow = content.Load<Texture2D>("MenuScreen/Arrow");
+			// Fonts
+			Arial = content.Load<SpriteFont>("Fonts/Arial");
 			Arcanista = content.Load<SpriteFont>("Fonts/Arcanista");
 			KM = content.Load<SpriteFont>("Fonts/KH-Metropolis");
+			// Sounds
 			SoundClickUI = content.Load<SoundEffect>("Audios/UI_SoundPack8_Error_v1").CreateInstance();
 			SoundEnterGameGame = content.Load<SoundEffect>("Audios/transition t07 two-step 007").CreateInstance();
 			SoundSelectUI = content.Load<SoundEffect>("Audios/UI_SoundPack11_Select_v14").CreateInstance();
+			// Call Init
 			Initial();
 		}
 		public override void UnloadContent() {
 			base.UnloadContent();
 		}
 		public override void Update(GameTime gameTime) {
+			SoundSelectUI.Volume = Singleton.Instance.SFX_MasterVolume;
+			SoundClickUI.Volume = Singleton.Instance.SFX_MasterVolume;
+			SoundEnterGameGame.Volume = Singleton.Instance.SFX_MasterVolume;
+
 			Singleton.Instance.MousePrevious = Singleton.Instance.MouseCurrent;
 			Singleton.Instance.MouseCurrent = Mouse.GetState();
 			if (mainScreen) {
 				// Click start game
 				if ((Singleton.Instance.MouseCurrent.X > 517 && Singleton.Instance.MouseCurrent.Y > 166) && (Singleton.Instance.MouseCurrent.X < 780 && Singleton.Instance.MouseCurrent.Y < 514)) {
 					mhStart = true;
+					if (!mhsStart) {
+						SoundSelectUI.Play();
+						mhsStart = true;
+					}
 					if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
+						SoundEnterGameGame.Play();
 						ScreenManager.Instance.LoadScreen(ScreenManager.GameScreenName.PalyScreen);
 					}
 				} else {
 					mhStart = false;
+					mhsStart = false;
 				}
 				// Click option
 				if ((Singleton.Instance.MouseCurrent.X > 93 && Singleton.Instance.MouseCurrent.Y > 161) && (Singleton.Instance.MouseCurrent.X < 256 && Singleton.Instance.MouseCurrent.Y < 674)) {
 					mhOption = true;
+					if (!mhsOption) {
+						SoundSelectUI.Play();
+						mhsOption = true;
+					}
 					if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
 						showOption = true;
 						mainScreen = false;
+						SoundClickUI.Play();
 					}
 				} else {
+					mhsOption = false;
 					mhOption = false;
 				}
 				// Click About
 				if ((Singleton.Instance.MouseCurrent.X > 1044 && Singleton.Instance.MouseCurrent.Y > 178) && (Singleton.Instance.MouseCurrent.X < 1218 && Singleton.Instance.MouseCurrent.Y < 694)) {
 					mhAbout = true;
+					if (!mhsAbout) {
+						SoundSelectUI.Play();
+						mhsAbout = true;
+					}
 					if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
 						showAbout = true;
 						mainScreen = false;
+						SoundClickUI.Play();
 					}
 				} else {
+					mhsAbout = false;
 					mhAbout = false;
 				}
 				// Click Ranking
 				if ((Singleton.Instance.MouseCurrent.X > 978 && Singleton.Instance.MouseCurrent.Y > 30) && (Singleton.Instance.MouseCurrent.X < 1200 && Singleton.Instance.MouseCurrent.Y < 160)) {
 					mhRanking = true;
+					if (!mhsRanking) {
+						SoundSelectUI.Play();
+						mhsRanking = true;
+					}
 					if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
 						showRanking = true;
 						mainScreen = false;
+						SoundClickUI.Play();
 					}
 				} else {
 					mhRanking = false;
+					mhsRanking = false;
 				}
 				// Click Exit
 				if ((Singleton.Instance.MouseCurrent.X > 420 && Singleton.Instance.MouseCurrent.Y > 580) && (Singleton.Instance.MouseCurrent.X < 831 && Singleton.Instance.MouseCurrent.Y < 692)) {
 					mhExit = true;
+					if (!mhsExit) {
+						SoundSelectUI.Play();
+						mhsExit = true;
+					}
 					if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
+						SoundEnterGameGame.Play();
 						Singleton.Instance.cmdExit = true;
 					}
 				} else {
 					mhExit = false;
+					mhsExit = false;
 				}
 			} else {
 				// Click Back
@@ -118,6 +158,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 						showAbout = false;
 						showOption = false;
 						showRanking = false;
+						SoundClickUI.Play();
 					}
 				} else {
 					mhBack = false;
@@ -140,6 +181,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 					if ((Singleton.Instance.MouseCurrent.X > 700 && Singleton.Instance.MouseCurrent.Y > 240) && (Singleton.Instance.MouseCurrent.X < (700 + Arrow.Width) && Singleton.Instance.MouseCurrent.Y < (240 + Arrow.Height))) {
 						if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
 							if (MasterBGM > 0) MasterBGM -= 5;
+							SoundSelectUI.Play();
 						}
 					} else if ((Singleton.Instance.MouseCurrent.X > 900 && Singleton.Instance.MouseCurrent.Y > 240) && (Singleton.Instance.MouseCurrent.X < (900 + Arrow.Width) && Singleton.Instance.MouseCurrent.Y < (240 + Arrow.Height))) {
 						if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
@@ -161,6 +203,7 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 						mhApply = true;
 						if (Singleton.Instance.MouseCurrent.LeftButton == ButtonState.Pressed && Singleton.Instance.MousePrevious.LeftButton == ButtonState.Released) {
 							if (Singleton.Instance.IsFullScreen != FullScreen) Singleton.Instance.cmdFullScreen = true;
+							SoundClickUI.Play();
 							Singleton.Instance.cmdShowFPS = ShowFPS;
 							Singleton.Instance.BGM_MasterVolume = MasterBGM;
 							Singleton.Instance.SFX_MasterVolume = MasterSFX / 100f;
@@ -168,12 +211,6 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 					} else {
 						mhApply = false;
 					}
-				}
-				if (showAbout) {
-
-				}
-				if (showRanking) {
-
 				}
 			}
 
@@ -254,16 +291,41 @@ namespace GP_Midterm_BubblePuzzle.Screen {
 				}
 				// Draw About Screen
 				if (showAbout) {
+					fontSize = KM.MeasureString("About");
+					spriteBatch.DrawString(KM, "About", new Vector2(Singleton.Instance.Diemensions.X / 2 - fontSize.X / 2, 125), Color.White);
 
+					spriteBatch.DrawString(Arcanista, "Graphics", new Vector2(200, 250), Color.NavajoWhite);
+					spriteBatch.DrawString(Arcanista, "- We create", new Vector2(160, 350), Color.White);
+					spriteBatch.DrawString(Arcanista, "All Graphics", new Vector2(150, 425), Color.White);
+
+					spriteBatch.DrawString(Arcanista, "Audios", new Vector2(600, 250), Color.NavajoWhite);
+					spriteBatch.DrawString(Arcanista, "- www.sonniss.com", new Vector2(520, 350), Color.White);
+					spriteBatch.DrawString(Arcanista, "Free Audios Bundle", new Vector2(510, 425), Color.White);
+
+					spriteBatch.DrawString(Arcanista, "Fonts", new Vector2(1000, 250), Color.NavajoWhite);
+					spriteBatch.DrawString(Arcanista, "- Arial", new Vector2(985, 350), Color.White);
+					spriteBatch.DrawString(Arcanista, "- Arcanista", new Vector2(950, 425), Color.White);
+					spriteBatch.DrawString(Arcanista, "- KH-Metropolis", new Vector2(920, 500), Color.White);
+
+					spriteBatch.DrawString(Arial, "FPS Counter Script : https://stackoverflow.com/questions/20676185", new Vector2(50, 630), Color.White);
+					spriteBatch.DrawString(Arial, "/xna-monogame-getting-the-frames-per-second", new Vector2(350, 660), Color.White);
 				}
 				// Draw Leader board Screen
 				if (showRanking) {
-
+					fontSize = KM.MeasureString("Ranking");
+					spriteBatch.DrawString(KM, "Ranking", new Vector2(Singleton.Instance.Diemensions.X / 2 - fontSize.X / 2, 125), Color.White);
+					
+					if (Singleton.Instance.BestTime != null) {
+						fontSize = Arcanista.MeasureString("Best Time : " + Singleton.Instance.BestTime);
+						spriteBatch.DrawString(Arcanista, "Best Time : " + Singleton.Instance.BestTime, new Vector2(Singleton.Instance.Diemensions.X / 2 - fontSize.X / 2, 350), Color.White);
+						fontSize = Arcanista.MeasureString("Best Score : " + Singleton.Instance.BestScore);
+						spriteBatch.DrawString(Arcanista, "Best Score : " + Singleton.Instance.BestScore, new Vector2(Singleton.Instance.Diemensions.X / 2 - fontSize.X / 2, 425), Color.White);
+					} else {
+						fontSize = Arcanista.MeasureString("No Infomation");
+						spriteBatch.DrawString(Arcanista, "No Infomation", new Vector2(Singleton.Instance.Diemensions.X / 2 - fontSize.X / 2, 350), Color.White);
+					}
 				}
-
 			}
-			
-
 			// Draw fade out
 			if (!fadeFinish) {
 				spriteBatch.Draw(Black, Vector2.Zero, _Color);
