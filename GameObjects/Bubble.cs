@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 
 namespace GP_Midterm_BubblePuzzle.GameObjects {
 	public class Bubble : _GameObject {

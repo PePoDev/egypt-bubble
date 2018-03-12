@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using GP_Midterm_BubblePuzzle.Managers;
 
@@ -9,8 +8,6 @@ namespace GP_Midterm_BubblePuzzle {
 	public class Main : Game {
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
-
-		private Vector2 fontSize;
 		private Song BGM;
 		private SpriteFont Arial;
 
@@ -45,10 +42,9 @@ namespace GP_Midterm_BubblePuzzle {
 		}
 
 		protected override void Update(GameTime gameTime) {
-			/* if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-				Exit(); */
-
 			ScreenManager.Instance.Update(gameTime);
+			Singleton.Instance.IsFullScreen = graphics.IsFullScreen;
+			MediaPlayer.Volume = Singleton.Instance.BGM_MasterVolume;
 
 			if (Singleton.Instance.cmdExit) {
 				Exit();
@@ -69,8 +65,7 @@ namespace GP_Midterm_BubblePuzzle {
 			if (Singleton.Instance.cmdShowFPS) {
 				float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 				FrameCounter.Instance.Update(deltaTime);
-				fontSize = Arial.MeasureString(string.Format("FPS: {0}", FrameCounter.Instance.AverageFramesPerSecond));
-				spriteBatch.DrawString(Arial, string.Format("FPS: {0}", FrameCounter.Instance.AverageFramesPerSecond), new Vector2((Singleton.Instance.Diemensions.X - fontSize.X) / 2, (Singleton.Instance.Diemensions.Y - fontSize.Y) / 2), Color.Yellow);
+				spriteBatch.DrawString(Arial, string.Format("FPS: " + FrameCounter.Instance.AverageFramesPerSecond.ToString("F")), new Vector2(1090,10), Color.Yellow);
 			}
 
 			spriteBatch.End();

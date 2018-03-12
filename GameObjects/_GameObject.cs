@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GP_Midterm_BubblePuzzle.Managers;
-using System.Linq;
 
 namespace GP_Midterm_BubblePuzzle.GameObjects {
 	public class _GameObject {

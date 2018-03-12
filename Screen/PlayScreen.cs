@@ -228,13 +228,13 @@ namespace GP_Midterm_BubblePuzzle.Screen {
             spriteBatch.DrawString(Arcanista, "Next Time : " + (tickPerUpdate - __timer).ToString("F"), new Vector2(20, 210), _Color);
 
             if (gameOver) {
-                spriteBatch.Draw(Black, Vector2.Zero, new Color(255, 255, 255, 125));
+                spriteBatch.Draw(Black, Vector2.Zero, new Color(255, 255, 255, 210));
                 fontSize = Arial.MeasureString("GameOver !!");
                 spriteBatch.DrawString(Arial, "GameOver !!", Singleton.Instance.Diemensions / 2 - fontSize / 2, _Color);
             }
 
             if (gameWin) {
-                spriteBatch.Draw(Black, Vector2.Zero, new Color(255, 255, 255, 125));
+                spriteBatch.Draw(Black, Vector2.Zero, new Color(255, 255, 255, 210));
                 fontSize = Arial.MeasureString("GameWin !!");
                 spriteBatch.DrawString(Arial, "GameWin !!", Singleton.Instance.Diemensions / 2 - fontSize / 2, _Color);
             }
