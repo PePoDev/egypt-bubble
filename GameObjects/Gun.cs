@@ -36,7 +36,7 @@ namespace GP_Midterm_BubblePuzzle.GameObjects {
 						color = _color,
 						IsActive = true,
 						Angle = angle + MathHelper.Pi,
-						Speed = 500,
+						Speed = 1000,
 					};
 					_color = GetRandomColor();
 					Singleton.Instance.Shooting = true;
