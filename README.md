@@ -2,22 +2,16 @@
 
 Bubble Puzzle game with basic logic by monogame.
 
----
-
 ## Installation
 
 **Windows**:
 
 > Check installer windows version (Win10 DX support) in __releases__ page.
 
----
-
 ## Screen Shot
 
 ![](Screenshot/01.png)
 ![](Screenshot/02.png)
-
----
 
 ## Release History
 
@@ -25,13 +19,9 @@ Bubble Puzzle game with basic logic by monogame.
     * First release game version.
     * Have little bugs.
 
----
-
 ## Meta
 
 My name is [@PePoDev](https://fb.com/pepo.dev) – support@pepodev.com
-
----
 
 ## Contributing
 
