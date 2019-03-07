@@ -21,7 +21,7 @@ Bubble Puzzle game with basic logic by monogame.
 
 ## Meta
 
-My name is [@PePoDev](https://fb.com/pepo.dev) – support@pepodev.com
+My name is [@PePoDev](https://fb.com/pepo.dev) – support@pepo.dev
 
 ## Contributing
 
